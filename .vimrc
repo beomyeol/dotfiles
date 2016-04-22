@@ -70,17 +70,10 @@ set linespace=3
 if !has('gui_running')
     let g:solarized_termtrans=1
     let g:solarized_termcolors=256
-"    let g:solarized_contrast='normal'
+    "let g:solarized_contrast='normal'
 endif
 set background=dark
 colorscheme solarized
-
-" molokai
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"colorscheme molokai
-
-"colorscheme desert
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
