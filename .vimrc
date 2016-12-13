@@ -32,16 +32,17 @@ Plugin 'vim-misc'
 Plugin 'easytags.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'crusoexia/vim-monokai'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'vim-latex/vim-latex'
-"Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'tpope/vim-markdown'
-"Plugin 'rdnetto/YCM-Generator'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'brookhong/cscope.vim'
+"Plugin 'rdnetto/YCM-Generator'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+"Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "Plugin 'wincent/command-t'
+"Plugin 'crusoexia/vim-monokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -160,11 +161,23 @@ endfunction
 command! -bar SetupPython call SetupPython()
 
 " CScope
-nmap ;s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap ;g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap ;c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap ;t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap ;e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap ;f :cs find f <C-R>=expand("<cword>")<CR><CR>
-nmap ;d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap ;i :cs find i ^<C-R>=expand("<cword>")<CR>$<CR>
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+
+" s: Find this C symbol
+nnoremap <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
