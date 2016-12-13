@@ -40,6 +40,7 @@ Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mileszs/ack.vim'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "Plugin 'wincent/command-t'
 "Plugin 'crusoexia/vim-monokai'
@@ -181,3 +182,7 @@ nnoremap <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
