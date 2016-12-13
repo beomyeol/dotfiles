@@ -73,6 +73,9 @@ set autoindent
 if has('gui_running')
   if has('gui_gtk2')
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
+  else
+    " For MacVim
+    set linespace=3
   endif
 else
   let g:solarized_termtrans=1
