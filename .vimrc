@@ -15,14 +15,14 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+"Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
@@ -32,13 +32,15 @@ Plugin 'vim-misc'
 Plugin 'easytags.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'crusoexia/vim-monokai'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'vim-latex/vim-latex'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-markdown'
-Plugin 'rdnetto/YCM-Generator'
+"Plugin 'rdnetto/YCM-Generator'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,22 +60,26 @@ filetype plugin indent on    " required
 syntax on
 set number
 set ruler
-set autoindent
+set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-set expandtab
 set backspace=indent,eol,start
-set linespace=3
+set linespace=1
+set autoindent
 
 " solarized
-if !has('gui_running')
-    let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
-    "let g:solarized_contrast='normal'
+if has('gui_running')
+  if has('gui_gtk2')
+    set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
+  endif
+else
+  let g:solarized_termtrans=1
+  let g:solarized_termcolors=256
+  "let g:solarized_contrast='normal'
 endif
-set background=dark
 colorscheme solarized
+set background=dark
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
@@ -94,7 +100,7 @@ nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 "let g:EclimCompletionMethod = 'omnifunc'
 
 " ctags
-set tags=./.tags;
+set tags=./.git/tags,.tags;
 " Easytags
 "let g:easytags_dynamic_files=2
 let g:easytags_dynamic_files=1
@@ -116,17 +122,21 @@ nnoremap <Leader>gp :Git push<CR>
 "nnoremap <Leader>g- :Silent Git stash<CR>:e<CR>
 "nnoremap <Leader>g+ :Silent Git stash pop<CR>:e<CR>
 
-if has("autocmd")
-	" Enable file type detection.
-	" Use the default filetype settings, so that mail get 'tw' set to 72,
-	" 'cindent' is on in C files, etc.
-	" Also load indent files, to automatically do language-dependent indenting.
-	filetype plugin indent on
-endif
-
 " Airline
 let g:airline_powerline_fonts = 1
 set laststatus=2
 
 " Spell
 setlocal spell spelllang=en_us
+
+" Latex
+if has('unix')
+  let g:Tex_DefaultTargetFormat='pdf'
+  let g:Tex_ViewRule_pdf='okular --unique 2>/dev/null'
+endif
+
+function CreateTags()
+  let curNodePath = g:NERDTreeFileNode.GetSelected().path.str()
+  exec ':!ctags -R --languages=c++,python -f ' . curNodePath . '/tags ' . curNodePath
+endfunction
+nmap <silent> <F4> :call CreateTags()<CR>
