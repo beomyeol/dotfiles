@@ -127,10 +127,15 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 
 " Spell
-setlocal spell spelllang=en_us
+"setlocal spell spelllang=en_us
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+autocmd FileType tex setlocal spell spelllang=en_us
+
 
 " Latex
-if has('unix')
+if has('osx')
+  let g:Tex_ViewRule_pdf = 'open -a /Applications/PDF\ Expert.app'
+elseif has('unix')
   let g:Tex_DefaultTargetFormat='pdf'
   let g:Tex_ViewRule_pdf='okular --unique 2>/dev/null'
 endif
@@ -140,3 +145,22 @@ function CreateTags()
   exec ':!ctags -R --languages=c++,python -f ' . curNodePath . '/tags ' . curNodePath
 endfunction
 nmap <silent> <F4> :call CreateTags()<CR>
+
+function! SetupPython()
+  " Here, you can have the final say on what is set.  So
+  " fixup any settings you don't like.
+  setlocal softtabstop=2
+  setlocal tabstop=2
+  setlocal shiftwidth=2
+endfunction
+command! -bar SetupPython call SetupPython()
+
+" CScope
+nmap ;s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap ;g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap ;c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap ;t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap ;e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap ;f :cs find f <C-R>=expand("<cword>")<CR><CR>
+nmap ;d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap ;i :cs find i ^<C-R>=expand("<cword>")<CR>$<CR>
