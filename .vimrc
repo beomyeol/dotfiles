@@ -12,38 +12,33 @@ Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
-Plugin 'The-NERD-tree'
-Plugin 'majutsushi/tagbar' 
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+Plugin 'google/vim-glaive'
+Plugin 'google/vim-searchindex'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'scrooloose/syntastic'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'godlygeek/tabular'
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'vim-latex/vim-latex'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'majutsushi/tagbar'
 Plugin 'vim-misc'
 Plugin 'easytags.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
-Plugin 'vim-latex/vim-latex'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'mileszs/ack.vim'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "Plugin 'wincent/command-t'
-"Plugin 'crusoexia/vim-monokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,6 +65,7 @@ set softtabstop=2
 set backspace=indent,eol,start
 set linespace=1
 set autoindent
+set colorcolumn=80
 
 " solarized
 if has('gui_running')
@@ -106,7 +102,7 @@ nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 "let g:EclimCompletionMethod = 'omnifunc'
 
 " ctags
-set tags=./.git/tags,.tags;
+set tags=./.git/tags;
 " Easytags
 "let g:easytags_dynamic_files=2
 let g:easytags_dynamic_files=1
@@ -186,3 +182,20 @@ nnoremap <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" glaive
+call glaive#Install()
+Glaive codefmt plugin[mappings] clang_format_style='google'
+
+" google codefmt
+"augroup autoformat_settings
+  "autocmd FileType bzl AutoFormatBuffer buildifier
+  "autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  "autocmd FileType dart AutoFormatBuffer dartfmt
+  "autocmd FileType go AutoFormatBuffer gofmt
+  "autocmd FileType gn AutoFormatBuffer gn
+  "autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  "autocmd FileType java AutoFormatBuffer google-java-format
+  "autocmd FileType python AutoFormatBuffer yapf
+  "" Alternative: autocmd FileType python AutoFormatBuffer autopep8
+"augroup END
