@@ -29,10 +29,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
 
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-latex/vim-latex'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-misc'
+Plugin 'vim-misc' "required for easytags
 Plugin 'easytags.vim'
 Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
@@ -182,6 +183,8 @@ nnoremap <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 " glaive
 call glaive#Install()
