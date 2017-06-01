@@ -67,6 +67,7 @@ set backspace=indent,eol,start
 set linespace=1
 set autoindent
 set colorcolumn=80
+set cursorline
 
 " solarized
 if has('gui_running')
@@ -202,3 +203,6 @@ Glaive codefmt plugin[mappings] clang_format_style='google'
   "autocmd FileType python AutoFormatBuffer yapf
   "" Alternative: autocmd FileType python AutoFormatBuffer autopep8
 "augroup END
+
+" cursorline setting
+highlight CursorLine gui=underline ctermbg=0
