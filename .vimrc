@@ -35,11 +35,13 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-misc' "required for easytags
 Plugin 'easytags.vim'
-Plugin 'brookhong/cscope.vim'
+"Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'mileszs/ack.vim'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "Plugin 'wincent/command-t'
+Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -205,4 +207,8 @@ Glaive codefmt plugin[mappings] clang_format_style='google'
 "augroup END
 
 " cursorline setting
-highlight CursorLine gui=underline ctermbg=0
+highlight CursorLine ctermbg=0
+
+" vim-better-whitespace / automatically remove whitespace
+autocmd BufEnter * EnableStripWhitespaceOnSave
+
