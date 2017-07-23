@@ -14,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'google/vim-maktaba'
@@ -25,11 +26,12 @@ Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-latex/vim-latex'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
@@ -39,9 +41,10 @@ Plugin 'easytags.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'mileszs/ack.vim'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
-"Plugin 'wincent/command-t'
 Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'ervandew/supertab'
+
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,8 +73,8 @@ set linespace=1
 set autoindent
 set colorcolumn=80
 set cursorline
+set t_Co=256
 
-" solarized
 if has('gui_running')
   if has('gui_gtk2')
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
@@ -79,13 +82,26 @@ if has('gui_running')
     " For MacVim
     set linespace=3
   endif
+  colorscheme Tomorrow
 else
-  let g:solarized_termtrans=1
-  let g:solarized_termcolors=256
-  "let g:solarized_contrast='normal'
+  colorscheme Tomorrow-Night
 endif
-colorscheme solarized
-set background=dark
+
+"colorscheme solarized
+
+" solarized
+"if !has('gui_running')
+  "let g:solarized_termtrans=1
+  "let g:solarized_termcolors=256
+"endif
+
+" solarized dark
+"set background=dark
+" cursorline setting for solarized dark
+"highlight CursorLine ctermbg=0
+
+" solarized light
+"set background=light
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
@@ -95,6 +111,8 @@ let g:NERDTreeMapActivateNode="<F3>"
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let g:nerdtree_tabs_open_on_gui_startup=0
 
 " YCM
 "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
@@ -205,9 +223,6 @@ Glaive codefmt plugin[mappings] clang_format_style='google'
   "autocmd FileType python AutoFormatBuffer yapf
   "" Alternative: autocmd FileType python AutoFormatBuffer autopep8
 "augroup END
-
-" cursorline setting
-highlight CursorLine ctermbg=0
 
 " vim-better-whitespace / automatically remove whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
