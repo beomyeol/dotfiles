@@ -75,7 +75,7 @@ set linespace=1
 set autoindent
 
 " ============================ Color schemes =================================
-if has('macunix')
+if has('osx')
   " Tomorrow Night
   if has('gui_running')
     " For MacVim
@@ -138,7 +138,7 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gl :Git log --graph --abbrev-commit<CR>
+nnoremap <Leader>gl :Git log --graph --pretty=format:"\%Cred\%h\%Creset -\%C(yellow)\%d\%Creset \%s \%Cgreen(%cr) \%C(bold blue)<\%an>\%Creset" --abbrev-commit<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
@@ -152,13 +152,12 @@ set laststatus=2
 autocmd FileType gitcommit setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
 
-
 " Latex
 if has('osx')
   let g:Tex_ViewRule_pdf = 'open -a /Applications/PDF\ Expert.app'
 elseif has('unix')
   let g:Tex_DefaultTargetFormat='pdf'
-  let g:Tex_ViewRule_pdf='okular --unique 2>/dev/null'
+  let g:Tex_ViewRule_pdf='evince'
 endif
 
 function CreateTags()
