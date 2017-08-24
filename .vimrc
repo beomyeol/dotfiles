@@ -43,8 +43,9 @@ Plugin 'mileszs/ack.vim'
 "Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'ntpeters/vim-better-whitespace'
 
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+"Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,6 +62,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+set t_Co=256
 syntax on
 set number
 set ruler
@@ -71,37 +73,37 @@ set softtabstop=2
 set backspace=indent,eol,start
 set linespace=1
 set autoindent
-set colorcolumn=80
-set cursorline
-set t_Co=256
 
-if has('gui_running')
-  if has('gui_gtk2')
-    set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
-  else
+" ============================ Color schemes =================================
+if has('macunix')
+  " Tomorrow Night
+  if has('gui_running')
     " For MacVim
     set linespace=3
+    colorscheme Tomorrow
+  else
+    colorscheme Tomorrow-Night
   endif
-  colorscheme Tomorrow
 else
-  colorscheme Tomorrow-Night
+  " Solarized
+  colorscheme solarized
+  if has('gui_running')
+    set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
+    set background=light
+  else
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=256
+    set background=dark
+  endif
 endif
 
-"colorscheme solarized
+" Base16-Tomorrow
+"colorscheme base16-tomorrow-night
 
-" solarized
-"if !has('gui_running')
-  "let g:solarized_termtrans=1
-  "let g:solarized_termcolors=256
-"endif
+set colorcolumn=80
+set cursorline
 
-" solarized dark
-"set background=dark
-" cursorline setting for solarized dark
-"highlight CursorLine ctermbg=0
-
-" solarized light
-"set background=light
+" ======================= Plugin configurations ==============================
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
@@ -136,15 +138,10 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
-"nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
-"nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
-"nnoremap <Leader>gh :Silent Glog<CR>
-"nnoremap <Leader>gH :Silent Glog<CR>:set nofoldenable<CR>
-"nnoremap <Leader>gr :Gread<CR>
-"nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gl :Git log --graph --abbrev-commit<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
-"nnoremap <Leader>g- :Silent Git stash<CR>:e<CR>
-"nnoremap <Leader>g+ :Silent Git stash pop<CR>:e<CR>
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -226,4 +223,3 @@ Glaive codefmt plugin[mappings] clang_format_style='google'
 
 " vim-better-whitespace / automatically remove whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
-
