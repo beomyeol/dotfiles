@@ -29,6 +29,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'bazelbuild/vim-bazel'
+Plugin 'bazelbuild/vim-ft-bzl'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -74,28 +76,22 @@ set linespace=1
 set autoindent
 
 " ============================ Color schemes =================================
-if has('osx')
-  set background=dark
-  if has('gui_running')
+set background=dark
+if has('gui_running')
+  colorscheme hybrid_material
+  let g:airline_theme = "hybrid"
+  if has('osx')
     " For MacVim
     set linespace=3
-    colorscheme hybrid_material
-    let g:airline_theme = "hybrid"
   else
-    let g:solarized_termtrans=1
-    colorscheme solarized
+    " For GVim
+    set guifont=Menlo\ for\ Powerline\ 10.5
+    set linespace=2
   endif
-else
+ else
   " Solarized
+  let g:solarized_termtrans=1
   colorscheme solarized
-  if has('gui_running')
-    set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
-    set background=light
-  else
-    let g:solarized_termtrans=1
-    "let g:solarized_termcolors=256
-    set background=dark
-  endif
 endif
 
 set colorcolumn=80
