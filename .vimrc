@@ -44,8 +44,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-"Plugin 'chriskempson/base16-vim'
+Plugin 'kristijanhusak/vim-hybrid-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,13 +75,15 @@ set autoindent
 
 " ============================ Color schemes =================================
 if has('osx')
-  " Tomorrow Night
+  set background=dark
   if has('gui_running')
     " For MacVim
     set linespace=3
-    colorscheme Tomorrow
+    colorscheme hybrid_material
+    let g:airline_theme = "hybrid"
   else
-    colorscheme Tomorrow-Night
+    let g:solarized_termtrans=1
+    colorscheme solarized
   endif
 else
   " Solarized
@@ -92,13 +93,10 @@ else
     set background=light
   else
     let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
+    "let g:solarized_termcolors=256
     set background=dark
   endif
 endif
-
-" Base16-Tomorrow
-"colorscheme base16-tomorrow-night
 
 set colorcolumn=80
 set cursorline
