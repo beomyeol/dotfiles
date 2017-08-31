@@ -31,6 +31,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bazelbuild/vim-bazel'
 Plugin 'bazelbuild/vim-ft-bzl'
+Plugin 'SirVer/ultisnips'
+Plugin 'beomyeol/vim-snippets'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -216,3 +218,8 @@ Glaive codefmt plugin[mappings] clang_format_style='google'
 
 " vim-better-whitespace / automatically remove whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
