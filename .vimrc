@@ -75,6 +75,8 @@ set softtabstop=2
 set backspace=indent,eol,start
 set linespace=1
 set autoindent
+set cindent
+set cinoptions+=g1,h2
 
 " ============================ Color schemes =================================
 set background=dark
@@ -84,10 +86,11 @@ if has('gui_running')
   if has('osx')
     " For MacVim
     set linespace=3
+    set guifont=Menlo\ for\ Powerline\ 10.5
   else
     " For GVim
-    set guifont=Menlo\ for\ Powerline\ 10.5
-    set linespace=2
+    set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
+    set linespace=0
   endif
  else
   " Solarized
@@ -200,6 +203,9 @@ nnoremap <Leader>a :Ack!<Space>
 " glaive
 call glaive#Install()
 Glaive codefmt plugin[mappings] clang_format_style='google'
+if !has('osx')
+  Glaive codefmt clang_format_executable='clang-format-4.0'
+endif
 
 " google codefmt
 "augroup autoformat_settings
@@ -221,3 +227,5 @@ autocmd BufEnter * EnableStripWhitespaceOnSave
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+set clipboard=unnamedplus
