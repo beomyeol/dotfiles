@@ -36,7 +36,7 @@ Plugin 'beomyeol/vim-snippets'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-latex/vim-latex'
+Plugin 'lervag/vimtex'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-misc' "required for easytags
@@ -44,7 +44,6 @@ Plugin 'easytags.vim'
 "Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'mileszs/ack.vim'
-"Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'altercation/vim-colors-solarized'
@@ -149,12 +148,11 @@ autocmd FileType gitcommit setlocal spell spelllang=en_us
 autocmd FileType tex setlocal spell spelllang=en_us
 
 " Latex
-if has('osx')
-  let g:Tex_ViewRule_pdf = 'open -a /Applications/PDF\ Expert.app'
-elseif has('unix')
-  let g:Tex_DefaultTargetFormat='pdf'
-  let g:Tex_ViewRule_pdf='evince'
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
 endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 function CreateTags()
   let curNodePath = g:NERDTreeFileNode.GetSelected().path.str()
