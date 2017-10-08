@@ -116,7 +116,6 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " YCM
 "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
 nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 
@@ -128,6 +127,7 @@ set tags=./.git/tags;
 " Easytags
 "let g:easytags_dynamic_files=2
 let g:easytags_dynamic_files=1
+let g:easytags_async=1
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
