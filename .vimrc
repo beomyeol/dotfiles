@@ -228,4 +228,8 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-set clipboard=unnamedplus
+if has('osx')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
