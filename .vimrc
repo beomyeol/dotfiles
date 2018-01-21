@@ -45,6 +45,7 @@ Plugin 'easytags.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Yggdroot/indentLine'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kristijanhusak/vim-hybrid-material'
@@ -125,8 +126,8 @@ nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 " ctags
 set tags=./tags;
 " Easytags
-let g:easytags_dynamic_files=2
-"let g:easytags_dynamic_files=1
+"let g:easytags_dynamic_files=2
+let g:easytags_dynamic_files=1
 let g:easytags_async=1
 
 " Tagbar
