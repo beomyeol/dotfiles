@@ -123,10 +123,10 @@ nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 "let g:EclimCompletionMethod = 'omnifunc'
 
 " ctags
-set tags=./.git/tags;
+set tags=./tags;
 " Easytags
-"let g:easytags_dynamic_files=2
-let g:easytags_dynamic_files=1
+let g:easytags_dynamic_files=2
+"let g:easytags_dynamic_files=1
 let g:easytags_async=1
 
 " Tagbar
