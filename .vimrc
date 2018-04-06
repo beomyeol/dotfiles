@@ -86,8 +86,8 @@ if has('gui_running')
   let g:airline_theme = "hybrid"
   if has('osx')
     " For MacVim
-    set linespace=3
-    set guifont=Menlo\ for\ Powerline\ 10.5
+    set linespace=4
+    set guifont=Menlo\ for\ Powerline:h10
   else
     " For GVim
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
