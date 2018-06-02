@@ -78,6 +78,8 @@ set linespace=1
 set autoindent
 set cindent
 set cinoptions+=g1,h2
+set hlsearch
+set incsearch
 
 " ============================ Color schemes =================================
 set background=dark
@@ -87,7 +89,7 @@ if has('gui_running')
   if has('osx')
     " For MacVim
     set linespace=4
-    set guifont=Menlo\ for\ Powerline:h10
+    set guifont=Menlo\ for\ Powerline:h12
   else
     " For GVim
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
@@ -160,6 +162,7 @@ if !exists('g:ycm_semantic_triggers')
 endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:tex_conceal = ""
 
 function CreateTags()
   let curNodePath = g:NERDTreeFileNode.GetSelected().path.str()
@@ -234,4 +237,3 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set clipboard^=unnamed,unnamedplus
 
-let g:tex_conceal = ""
