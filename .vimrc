@@ -237,3 +237,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set clipboard^=unnamed,unnamedplus
 
+set pastetoggle=<F5>
