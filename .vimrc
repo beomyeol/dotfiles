@@ -108,8 +108,8 @@ set cursorline
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
-silent! map <F3> :NERDTreeFind<CR>
-let g:NERDTreeMapActivateNode="<F3>"
+"silent! map <F3> :NERDTreeFind<CR>
+"let g:NERDTreeMapActivateNode="<F3>"
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -237,4 +237,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set clipboard^=unnamed,unnamedplus
 
-set pastetoggle=<F5>
+set pastetoggle=<F3>
+command! -nargs=* Py !python % <args>
