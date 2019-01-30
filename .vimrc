@@ -230,3 +230,6 @@ set clipboard^=unnamed,unnamedplus
 
 set pastetoggle=<F3>
 command! -nargs=* Py !python % <args>
+
+" indentLine
+autocmd FileType markdown let g:indentLine_enabled=0
