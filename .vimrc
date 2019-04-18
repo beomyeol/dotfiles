@@ -24,7 +24,7 @@ Plugin 'google/vim-searchindex'
 
 Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
@@ -105,6 +105,10 @@ set colorcolumn=80
 set cursorline
 
 " ======================= Plugin configurations ==============================
+
+let g:ale_lint_on_save = 1
+let g:ale_python_pylint_use_global = 1
+let g:ale_python_pylint_options = '--max-line-length=80'
 
 " NERDTree
 silent! map <F2> :NERDTreeToggle<CR>
@@ -232,4 +236,7 @@ set pastetoggle=<F3>
 command! -nargs=* Py !python % <args>
 
 " indentLine
-autocmd FileType markdown let g:indentLine_enabled=0
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
+let g:vim_markdown_conceal=0
+let g:vim_markdown_folding_disabled=1
+let g:vim_json_conceal=0
