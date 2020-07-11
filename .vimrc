@@ -13,8 +13,9 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'google/vim-maktaba'
@@ -28,7 +29,7 @@ Plugin 'w0rp/ale'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bazelbuild/vim-bazel'
 Plugin 'bazelbuild/vim-ft-bzl'
 Plugin 'SirVer/ultisnips'
@@ -39,17 +40,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'lervag/vimtex'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-misc' "required for easytags
-Plugin 'easytags.vim'
-"Plugin 'brookhong/cscope.vim'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
-
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'rakr/vim-one'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,58 +70,33 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set backspace=indent,eol,start
-set linespace=1
 set autoindent
 set cindent
 set cinoptions+=g1,h2
 set hlsearch
 set incsearch
+set hidden
+set nowrap
+set showmatch
+set nobackup
+set noswapfile
+set mouse=a
 
 " ============================ Color schemes =================================
-if has('osx')
+" Solarized
+set background=dark
+colorscheme solarized
+
+if has('gui_running')
   " MacOS
-  if has('gui_running')
-    set background=dark
-    let g:airline_theme = "hybrid"
+  if has('osx')
     set linespace=3
     set guifont=Menlo\ for\ Powerline:h12
-    colorscheme hybrid_material
-  else
-    " One
-    "Credit joshdick
-    "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-    "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-    "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-    "if (empty($TMUX))
-      "if (has("nvim"))
-      ""For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-      "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-      "endif
-      ""For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-      ""Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-      "" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-      "if (has("termguicolors"))
-        "set termguicolors
-      "endif
-    "endif
-    "set background=light
-    "let g:one_allow_italics=1
-    "colorscheme one
-
-    " Solarized
-    let g:solarized_termtrans=1
     set background=dark
     colorscheme solarized
-  endif
-else
-  if has('gui_running')
+  else
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
-    set linespace=0
   endif
-  " Solarized
-  let g:solarized_termtrans=1
-  set background=dark
-  colorscheme solarized
 endif
 
 set colorcolumn=80
@@ -139,30 +109,22 @@ let g:ale_python_pylint_use_global = 1
 let g:ale_python_pylint_options = '--max-line-length=80'
 
 " NERDTree
-silent! map <F2> :NERDTreeToggle<CR>
+"silent! map <F2> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 "silent! map <F3> :NERDTreeFind<CR>
 "let g:NERDTreeMapActivateNode="<F3>"
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Open a NERDTree automatically when vim starts up if no files were specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-let g:nerdtree_tabs_open_on_gui_startup=0
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " YCM
 "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 au FileType c,cpp,python nnoremap <F12> :YcmCompleter GoTo<CR>
 "nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
-
-" Eclim
-"let g:EclimCompletionMethod = 'omnifunc'
-
-" ctags
-set tags=./tags;
-" Easytags
-"let g:easytags_dynamic_files=2
-let g:easytags_dynamic_files=1
-let g:easytags_async=1
 
 " Tabs
 nnoremap <C-t> :tabnew<CR>
@@ -182,6 +144,7 @@ nnoremap <Leader>gp :Git push<CR>
 " Airline
 let g:airline_powerline_fonts = 1
 set laststatus=2
+"let g:airline#extensions#tabline#enabled = 1
 
 " Spell
 "setlocal spell spelllang=en_us
@@ -268,3 +231,7 @@ let g:indentLine_fileTypeExclude = ['json', 'markdown']
 let g:vim_markdown_conceal=0
 let g:vim_markdown_folding_disabled=1
 let g:vim_json_conceal=0
+
+" GitGutter
+highlight! link SignColumn LineNr
+
