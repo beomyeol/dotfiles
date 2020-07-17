@@ -61,7 +61,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set t_Co=256
+if !has('gui_running')
+  set t_Co=256
+endif
+
 syntax on
 set number
 set ruler
@@ -91,9 +94,7 @@ if has('gui_running')
   " MacOS
   if has('osx')
     set linespace=3
-    set guifont=Menlo\ for\ Powerline:h12
-    set background=dark
-    colorscheme solarized
+    set guifont=Menlo:h12
   else
     set guifont=Meslo\ LG\ S\ for\ Powerline\ 10
   endif
@@ -142,7 +143,7 @@ nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
 
 " Airline
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 set laststatus=2
 "let g:airline#extensions#tabline#enabled = 1
 
