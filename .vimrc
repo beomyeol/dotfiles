@@ -14,9 +14,9 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 "Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'preservim/nerdcommenter'
 
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
@@ -121,6 +121,9 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Nerd Commenter
+let g:NERDSpaceDelims = 1
 
 " YCM
 "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
