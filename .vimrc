@@ -233,6 +233,7 @@ command! -nargs=* Py !python % <args>
 let g:indentLine_fileTypeExclude = ['json', 'markdown']
 let g:vim_markdown_conceal=0
 let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_conceal_code_blocks=0
 let g:vim_json_conceal=0
 
 " GitGutter
