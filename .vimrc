@@ -105,8 +105,6 @@ set cursorline
 " ======================= Plugin configurations ==============================
 
 let g:ale_lint_on_save = 1
-let g:ale_python_pylint_use_global = 1
-let g:ale_python_pylint_options = '--max-line-length=80'
 
 " NERDTree
 "silent! map <F2> :NERDTreeToggle<CR>
@@ -217,7 +215,8 @@ endif
 "augroup END
 
 " vim-better-whitespace / automatically remove whitespace
-autocmd BufEnter * EnableStripWhitespaceOnSave
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-j>"
