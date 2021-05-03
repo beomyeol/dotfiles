@@ -238,3 +238,5 @@ let g:vim_json_conceal=0
 " GitGutter
 highlight! link SignColumn LineNr
 
+" for VSCode integrated terminal
+highlight Normal ctermbg=none
